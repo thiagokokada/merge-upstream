@@ -1,0 +1,30 @@
+name: "Merge upstream"
+description: "Merge in changes from upstream using GitHub API"
+inputs:
+  branch:
+    description: "Branch to merge upstream changes"
+    required: true
+  repo:
+    description: "Repository to be updated (in '<owner>/<repo>' format)"
+    required: true
+    default: ${{ github.repository }}
+  token:
+    description: "GitHub token to use"
+    required: true
+    default: ${{ github.token }}
+outputs:
+  message:
+    description: "Response message of the API"
+    value: ${{ steps.merge-upstream.outputs.message }}
+  merge-type:
+    description: "Type of merge applied"
+    value: ${{ steps.merge-upstream.outputs.merge-type }}
+  base-branch:
+    description: "Branch used as base for update"
+    value: ${{ steps.merge-upstream.outputs.base-branch }}
+runs:
+  using: "composite"
+  steps:
+    - id: merge-upstream
+      run: merge-upstream.sh
+      shell: bash
