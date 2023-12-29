@@ -4,14 +4,13 @@ inputs:
   branch:
     description: "Branch to merge upstream changes"
     required: true
+  token:
+    description: "GitHub token to use"
+    required: true
   repo:
     description: "Repository to be updated (in '<owner>/<repo>' format)"
     required: true
     default: ${{ github.repository }}
-  token:
-    description: "GitHub token to use"
-    required: true
-    default: ${{ github.token }}
 outputs:
   message:
     description: "Response message of the API"
