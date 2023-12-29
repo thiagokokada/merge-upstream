@@ -1,5 +1,8 @@
 name: "Merge upstream action"
 description: "Merge in changes from upstream using GitHub API"
+branding:
+  icon: "git-merge"
+  color: "blue"
 inputs:
   branch:
     description: "Branch to merge upstream changes"
