@@ -1,4 +1,4 @@
-name: "Merge upstream"
+name: "Merge upstream action"
 description: "Merge in changes from upstream using GitHub API"
 inputs:
   branch:
