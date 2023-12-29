@@ -99,3 +99,15 @@ jobs:
           # repository.
           token: ${{ secrets.PAT_TOKEN }}
 ```
+
+## Development
+
+To run tests, you will need to create a
+Personal Access Token (PAT) with access to
+[thiagokokada/nixpkgs](https://github.com/thiagokokada/nixpkgs) repo and run:
+
+```console
+$ export GITHUB_TOKEN=<PAT token>
+$ git submodule init
+$ ./tests.sh
+```
