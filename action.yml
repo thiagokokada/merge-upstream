@@ -25,7 +25,6 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v4
     - id: merge-upstream
-      run: merge-upstream.sh
+      run: ./merge-upstream.sh
       shell: bash
