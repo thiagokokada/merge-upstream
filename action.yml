@@ -26,5 +26,5 @@ runs:
   using: "composite"
   steps:
     - id: merge-upstream
-      run: merge-upstream.sh
+      run: ./merge-upstream.sh
       shell: bash
