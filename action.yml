@@ -29,3 +29,7 @@ runs:
     - id: merge-upstream
       run: merge-upstream.sh
       shell: bash
+      env:
+        INPUT_REPO: ${{ inputs.repo }}
+        INPUT_BRANCH: ${{ inputs.branch }}
+        INPUT_TOKEN: ${{ inputs.token }}
