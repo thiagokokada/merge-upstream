@@ -25,6 +25,8 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
     - id: merge-upstream
       run: ./merge-upstream.sh
       shell: bash
