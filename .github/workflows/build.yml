@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Run unit tests
+      run: |
+        ./tests.sh
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+    - name: Integration test
+      uses: ./
+      with:
+        branch: master
+        repo: thiagokokada/nixpkgs
+        token: ${{ secrets.PAT_TOKEN }}
