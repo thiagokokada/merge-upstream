@@ -87,6 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: thiagokokada/merge-upstream@v1
+        id: merge-upstream
         with:
           # Required.
           branch: main
@@ -98,16 +99,23 @@ jobs:
           # especially if you're running this action from an arbitrary
           # repository.
           token: ${{ secrets.PAT_TOKEN }}
+      - run: |
+          # The job has the following outputs that matches the API response.
+          # They may be useful for further automation.
+          echo "${{ steps.merge-upstream.outputs.message }}"
+          echo "${{ steps.merge-upstream.outputs.merge-type }}"
+          echo "${{ steps.merge-upstream.outputs.base-branch }}"
 ```
 
 ## Development
 
-To run tests, you will need to create a
-Personal Access Token (PAT) with access to
-[thiagokokada/nixpkgs](https://github.com/thiagokokada/nixpkgs) repo and run:
+To run tests, you will need to create a Personal Access Token (PAT) with
+access to `repo` permissions, and run:
 
 ```console
-$ export GITHUB_TOKEN=<PAT token>
 $ git submodule update --init
+$ export GITHUB_TOKEN=<PAT token>
+$ export TEST_BRANCH=<branch>
+$ export TEST_REPO=<repo>
 $ ./tests.sh
 ```
