@@ -1,5 +1,7 @@
 # Merge Upstream
 
+[![build](https://github.com/thiagokokada/merge-upstream/actions/workflows/build.yml/badge.svg)](https://github.com/thiagokokada/merge-upstream/actions/workflows/build.yml)
+
 Merge changes from an upstream repository branch into a current
 repository branch. For example, updating changes from the repository
 that was forked from.
@@ -16,8 +18,6 @@ to do so, and this brings some advantages and limitations:
   button from Web UI)
 - Only merge branches that exist in both upstream and fork
 - Merge is only done by either `merge` or `fast-forward` strategies
-
-To merge multiple branches, create multiple jobs.
 
 ## Usage
 
@@ -50,6 +50,10 @@ jobs:
 ```
 
 ### Multiple branches
+
+To update multiple branches, just call the job multiple times with
+different a `branch` parameter. To make it easier to do so, you can use
+[matrix strategy](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs).
 
 ```yaml
 name: Sync fork with upstream
@@ -87,6 +91,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: thiagokokada/merge-upstream@v1
+        id: merge-upstream
         with:
           # Required.
           branch: main
@@ -98,16 +103,23 @@ jobs:
           # especially if you're running this action from an arbitrary
           # repository.
           token: ${{ secrets.PAT_TOKEN }}
+      - run: |
+          # The job has the following outputs that matches the API response.
+          # They may be useful for further automation.
+          echo "${{ steps.merge-upstream.outputs.message }}"
+          echo "${{ steps.merge-upstream.outputs.merge-type }}"
+          echo "${{ steps.merge-upstream.outputs.base-branch }}"
 ```
 
 ## Development
 
-To run tests, you will need to create a
-Personal Access Token (PAT) with access to
-[thiagokokada/nixpkgs](https://github.com/thiagokokada/nixpkgs) repo and run:
+To run tests, you will need to create a Personal Access Token (PAT) with
+access to `repo` permissions, and run:
 
 ```console
-$ export GITHUB_TOKEN=<PAT token>
 $ git submodule update --init
+$ export GITHUB_TOKEN=<PAT token>
+$ export TEST_BRANCH=<branch>
+$ export TEST_REPO=<repo>
 $ ./tests.sh
 ```
