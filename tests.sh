@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-testSuccess() {
+setUp() {
   assertNotEquals "GITHUB_TOKEN needs to be set" "" "$GITHUB_TOKEN"
+}
 
+testSuccess() {
   tmpdir="$(mktemp -d)"
-  export INPUT_BRANCH=master
-  export INPUT_REPO=thiagokokada/nixpkgs
+  export INPUT_BRANCH="${TEST_BRANCH:-master}"
+  export INPUT_REPO="${TEST_REPO:-thiagokokada/nixpkgs}"
   export INPUT_TOKEN="$GITHUB_TOKEN"
   export GITHUB_OUTPUT="$tmpdir/output"
 
@@ -18,8 +20,8 @@ testSuccess() {
 }
 
 testFail() {
-  export INPUT_BRANCH=master
-  export INPUT_REPO=thiagokokada/nixpkgs
+  export INPUT_BRANCH="${TEST_BRANCH:-master}"
+  export INPUT_REPO="${TEST_REPO:-thiagokokada/nixpkgs}"
   export INPUT_TOKEN="$RANDOM"
 
   ./merge-upstream.sh
