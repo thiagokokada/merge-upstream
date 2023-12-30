@@ -6,18 +6,16 @@ Merge changes from an upstream repository branch into a current
 repository branch. For example, updating changes from the repository
 that was forked from.
 
-Syncs a fork branch with the upstream repository. For example, updating
-changes made from the repository that was forked from.
-
 This version uses
 [GitHub API](https://docs.github.com/en/rest/branches/branches?apiVersion=2022-11-28#sync-a-fork-branch-with-the-upstream-repository)
 to do so, and this brings some advantages and limitations:
 
-- Fast, because it uses GitHub own's API (similar to
+- Fast, because it uses GitHub's API (similar to
   [`Sync fork`](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork#syncing-a-fork-branch-from-the-web-ui)
   button from Web UI)
-- Only merge branches that exist in both upstream and fork
-- Merge is only done by either `merge` or `fast-forward` strategies
+- Only works for branches that exist in both upstream and fork
+- Merge is done by either `merge` or `fast-forward` strategies, however
+there is no way to decide which strategy is used
 
 ## Usage
 
