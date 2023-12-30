@@ -108,6 +108,6 @@ Personal Access Token (PAT) with access to
 
 ```console
 $ export GITHUB_TOKEN=<PAT token>
-$ git submodule init
+$ git submodule update --init
 $ ./tests.sh
 ```
