@@ -16,14 +16,22 @@ jobs:
         submodules: true
 
     - name: Run unit tests
+      id: unit-tests
       run: |
         ./tests.sh
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
     - name: Integration test
+      id: integration-test
       uses: ./
       with:
         branch: master
         repo: thiagokokada/nixpkgs
         token: ${{ secrets.PAT_TOKEN }}
+
+    - name: Validate outputs
+      run: |
+          test -n "${{ steps.integration-test.outputs.message }}"
+          test -n "${{ steps.integration-test.outputs.merge-type }}"
+          test -n "${{ steps.integration-test.outputs.base-branch }}"
