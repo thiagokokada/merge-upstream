@@ -19,8 +19,6 @@ to do so, and this brings some advantages and limitations:
 - Only merge branches that exist in both upstream and fork
 - Merge is only done by either `merge` or `fast-forward` strategies
 
-To merge multiple branches, create multiple jobs.
-
 ## Usage
 
 Before starting, ensure that the branch you want to update exist in both
@@ -52,6 +50,10 @@ jobs:
 ```
 
 ### Multiple branches
+
+To update multiple branches, just call the job multiple times with
+different a `branch` parameter. To make it easier to do so, you can use
+[matrix strategy](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs).
 
 ```yaml
 name: Sync fork with upstream
