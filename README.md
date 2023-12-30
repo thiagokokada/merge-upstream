@@ -1,5 +1,7 @@
 # Merge Upstream
 
+[![build](https://github.com/thiagokokada/merge-upstream/actions/workflows/build.yml/badge.svg)](https://github.com/thiagokokada/merge-upstream/actions/workflows/build.yml)
+
 Merge changes from an upstream repository branch into a current
 repository branch. For example, updating changes from the repository
 that was forked from.
