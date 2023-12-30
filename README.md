@@ -35,7 +35,7 @@ $ git push origin
 name: Sync fork with upstream
 on:
   schedule:
-    - cron: "0 */6 * * *" # every 6th hour
+    - cron: "0 */6 * * *" # Every 6th hour.
   workflow_dispatch: # Allow manual triggering via Web UI to test.
 
 jobs:
