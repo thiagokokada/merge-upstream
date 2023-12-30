@@ -36,7 +36,7 @@ name: Sync fork with upstream
 on:
   schedule:
     - cron: "0 */6 * * *" # every 6th hour
-  workflow_dispatch: # allow manual triggering via Web UI to test
+  workflow_dispatch: # Allow manual triggering via Web UI to test.
 
 jobs:
   sync-fork:
@@ -63,7 +63,7 @@ on:
 jobs:
   sync-fork:
     strategy:
-      # using matrix to trigger sync in multiple branches
+      # Using matrix to trigger sync in multiple branches.
       matrix:
         branch:
           - master
@@ -91,10 +91,11 @@ jobs:
       - uses: thiagokokada/merge-upstream@v1
         id: merge-upstream
         with:
-          # Required.
+          # Always required.
           branch: main
           # Forked repo to be updated with upstream, may be useful to set if
           # you want to run this action from an arbitrary repository.
+          # Defaults to the repository the action is running.
           repo: owner/repo
           # GitHub token to be used, defaults to GITHUB_TOKEN.
           # You may want to use a Personal Access Token (PAT) instead,
@@ -118,6 +119,6 @@ access to `repo` permissions, and run:
 $ git submodule update --init
 $ export GITHUB_TOKEN=<PAT token>
 $ export TEST_BRANCH=<branch>
-$ export TEST_REPO=<repo>
+$ export TEST_REPO=<owner>/<repo>
 $ ./tests.sh
 ```
