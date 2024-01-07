@@ -37,7 +37,7 @@ testFail() {
   export MOCKED_CURL_EXIT_CODE=1
 
   ./merge-upstream.sh
-  assertNotEquals 0 "$?"
+  assertEquals 1 "$?"
 }
 
 . ./shunit2/shunit2
