@@ -16,7 +16,7 @@ jobs:
       with:
         submodules: true
 
-    - name: Run unit tests
+    - name: Unit tests
       id: unit-tests
       run: |
         ./tests.sh
