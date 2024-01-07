@@ -112,13 +112,12 @@ jobs:
 
 ## Development
 
-To run tests, you will need to create a Personal Access Token (PAT) with
-access to `repo` permissions, and run:
+To run unit tests:
 
 ```console
 $ git submodule update --init
-$ export GITHUB_TOKEN=<PAT token>
-$ export TEST_BRANCH=<branch>
-$ export TEST_REPO=<owner>/<repo>
 $ ./tests.sh
 ```
+
+Integration tests will run in [CI](./github/workflows/build.yml) on push or
+when a PR is opened.
