@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "${MOCKED_CURL_STDOUT:-}"
+
+exit "${MOCKED_CURL_EXIT_CODE:-0}"
