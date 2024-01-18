@@ -101,6 +101,7 @@ jobs:
           # You may want to use a Personal Access Token (PAT) instead,
           # especially if you're running this action from an arbitrary
           # repository.
+          # You will need a token with `workflow` permissions.
           token: ${{ secrets.PAT_TOKEN }}
       - run: |
           # The job has the following outputs that matches the API response.
