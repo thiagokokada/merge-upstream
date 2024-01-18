@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # https://docs.github.com/en/rest/branches/branches?apiVersion=2022-11-28#sync-a-fork-branch-with-the-upstream-repository
-response=$(curl --location --fail \
+response=$(curl --location --fail-with-body \
   -X POST \
   -H "Accept: application/vnd.github+json" \
   -H "Authorization: Bearer $INPUT_TOKEN" \
