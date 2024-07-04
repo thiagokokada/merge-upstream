@@ -20,8 +20,6 @@ jobs:
       id: unit-tests
       run: |
         ./tests.sh
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
 
     - name: Integration test
       id: integration-test
