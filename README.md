@@ -41,13 +41,13 @@ on:
 jobs:
   sync-fork:
     runs-on: ubuntu-latest
+    # Needs explicit permission to write to the repository
+    permissions:
+      contents: write
     steps:
       - uses: thiagokokada/merge-upstream@v1.0.2
         with:
           branch: main
-          # Recent GitHub changes needs a token with `workflow` permissions, so
-          # the default GITHUB_TOKEN does not work anymore
-          token: ${{ secrets.PAT_TOKEN }}
 ```
 
 ### Multiple branches
@@ -72,11 +72,12 @@ jobs:
           - master
           - staging
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: thiagokokada/merge-upstream@v1.0.2
         with:
           branch: ${{ matrix.branch }}
-          token: ${{ secrets.PAT_TOKEN }}
 ```
 
 ### Advanced usage
